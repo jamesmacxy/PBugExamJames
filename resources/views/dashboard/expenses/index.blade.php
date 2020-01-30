@@ -40,7 +40,10 @@
       	@endif
     </tbody>
 </table>
+@if(count($expenses) != '')
 
 @include('includes.expensesmodal')
+
+@endif
 
 @stop

@@ -24,8 +24,8 @@
     		@foreach($categories as $category)
 
 		      <tr>
-		        <td>{{ $category->name }}</td>
-		        <td>{{ $category->description }}</td>
+		        <td>{{ $category->name == '' ? '' : $category->name }}</td>
+		        <td>{{ $category->description == '' ? '' : $category->description }}</td>
 		        <td>{{ $category->created_at == '' ? '' : $category->created_at->diffForHumans() }}</td>
             <td>
             <button type="submit" class="btn btn-info" data-name="{{ $category->name }}" data-description="{{ $category->description }}" data-toggle="modal" data-target="#edit">Edit</button>
@@ -38,7 +38,10 @@
       	@endif
     </tbody>
 </table>
+@if(count($categories) != '')
 
 @include('includes.categorymodal')
+
+@endif
 
 @stop
