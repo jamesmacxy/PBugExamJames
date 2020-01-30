@@ -6,7 +6,7 @@
         <h4 class="modal-title" id="myModalLabel">Edit Category</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <form action="" method="post" autocomplete="off">
+      <form action="{{ route('expensemanagement.update', $category->id) }}" method="post" autocomplete="off">
           {{csrf_field()}}
           {{ method_field('PATCH') }}
         <div class="modal-body">
