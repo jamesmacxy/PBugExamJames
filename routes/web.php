@@ -26,6 +26,8 @@ Route::get('/dashboard', function(){
 
 	$expenses = Expense::groupBy('category_id')->selectRaw('sum(amount) as sum, category_id')->pluck('sum','category_id');
 
+	// $expenses = Expense::join('categories','categories.id','expenses.category_id')->groupBy('expenses.category_id')->selectRaw('sum(expenses.amount) as sum, expenses.category_id','categories.name')->get();
+
 	$categories = Category::all();
 
 	return view('dashboard.index', compact('expenses','categories'));

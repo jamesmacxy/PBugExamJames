@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Expense;
 
 class Category extends Model
 {
@@ -13,4 +14,10 @@ class Category extends Model
     	'description'
 
     ];
+
+    public function expenses(){
+
+    	return $this->hasMany('App\Expense');
+
+    }
 }
