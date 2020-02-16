@@ -16,20 +16,30 @@
 			</div>
 			<div class="card-body">
 		    	<div class="row">
-		    	<div class="col-sm-6">
-		    	@foreach($categories as $category)
-
-		    	<h2>{{ $category->name }}</h2>
-
-		    	@endforeach
-		    	</div>
-		    	<div class="col-sm-6">
-		    	@foreach($expenses as $expense)
-
-		    	<h2>&#8369;{{ number_format($expense, 2) }}</h2>
-
-		    	@endforeach
-		    	</div>
+          <table class="table">
+            <thead>
+              <th>Category</th>
+              <th>Expenses</th>
+            </thead>
+            <tbody>
+              <!-- @foreach($categories as $category)
+              <tr>
+                <td>{{ $category->name }}</td>
+                @foreach($expenses as $key => $expense)   
+                    @if($key == $category->id)
+                    <td>&#8369;{{ number_format($expense->sum, 2) }}</td>
+                    @endif
+                @endforeach
+              </tr>
+              @endforeach -->
+              @foreach($expenses as $expense)
+              <tr>   
+                <th>{{ $expense->name }}</th>
+                <td>&#8369;{{ number_format($expense->sum, 2) }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
 		    	</div>
 		    </div>
 		</div>
@@ -75,9 +85,9 @@
     var donutData        = {
       labels: [
 
-      @foreach($categories as $category)
+      @foreach($expenses as $expense)
 
-      '{{ $category->name }}',
+      '{{ $expense->name }}',
 
       @endforeach
 
@@ -87,12 +97,12 @@
           data: [
           @foreach($expenses as $expense)
 
-      			{{ $expense }},
+      			{{ $expense->sum }},
 
       		@endforeach
           ],
           backgroundColor : [
-          @foreach($categories as $category) 
+          @foreach($expenses as $expense) 
 
           getRandomColor(),
 
